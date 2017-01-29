@@ -1,8 +1,19 @@
 apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release'
 
 targetCompatibility = JavaVersion.VERSION_1_6
 sourceCompatibility = JavaVersion.VERSION_1_6
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    userOrg = 'srym'
+    groupId = 'us.shiroyama.android'
+    artifactId = 'shoebill'
+    version = '0.1.0'
+    description = "Shoebill is a library to wrap static methods for unit testing."
+    website = 'https://github.com/srym/shoebill'
+    licences = ['Apache-2.0']
 }
