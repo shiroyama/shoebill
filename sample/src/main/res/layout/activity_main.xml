@@ -11,7 +11,32 @@
     tools:context="us.shiroyama.android.shoebill.MainActivity">
 
     <TextView
+        android:id="@+id/wifi_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="WiFi: " />
+
+    <TextView
+        android:id="@+id/mobile_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wifi_label"
+        android:text="3G/4G: " />
+
+    <TextView
+        android:id="@+id/wifi_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/wifi_label"
+        android:layout_toRightOf="@id/wifi_label"
+        tools:text="true" />
+
+    <TextView
+        android:id="@+id/mobile_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/mobile_label"
+        android:layout_toEndOf="@id/mobile_label"
+        android:layout_toRightOf="@id/mobile_label"
+        tools:text="false" />
 </RelativeLayout>
