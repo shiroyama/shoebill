@@ -191,7 +191,18 @@ public class ShoebillProcessor extends AbstractProcessor {
 
         List<ParameterSpec> parameterSpecs = method.getParameters()
                 .stream()
-                .map(ParameterSpec::get)
+                .map(parameter -> {
+                    List<AnnotationSpec> annotationSpecs = parameter.getAnnotationMirrors()
+                            .stream()
+                            .map(AnnotationSpec::get)
+                            .collect(Collectors.toList());
+
+                    return ParameterSpec
+                            .builder(ClassName.get(parameter.asType()), parameter.getSimpleName().toString())
+                            .addModifiers(parameter.getModifiers())
+                            .addAnnotations(annotationSpecs)
+                            .build();
+                })
                 .collect(Collectors.toList());
 
         if (!parameterSpecs.isEmpty()) {
