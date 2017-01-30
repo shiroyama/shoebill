@@ -88,8 +88,8 @@ repositories {
 ```
 
 ```
-annotationProcessor 'us.shiroyama.android:shoebill-processor:0.1.0'
-provided 'us.shiroyama.android:shoebill:0.1.0'
+annotationProcessor 'us.shiroyama.android:shoebill-processor:0.1.1'
+provided 'us.shiroyama.android:shoebill:0.1.1'
 ```
 
 ## License
