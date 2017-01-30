@@ -15,6 +15,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -101,7 +102,7 @@ public class ShoebillProcessor extends AbstractProcessor {
 
         TypeSpec targetTypeSpec = TypeSpec
                 .classBuilder(targetClassName)
-                .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addModifiers(getTargetClassModifiers(originalClass))
                 .addField(singletonField)
                 .addMethod(getSingletonGetterMethod(className, singletonField))
                 .addMethod(getSingletonSetterMethod(className, singletonField))
@@ -124,6 +125,18 @@ public class ShoebillProcessor extends AbstractProcessor {
 
     private String getTargetClassName(TypeElement originalClass) {
         return originalClass.getSimpleName() + "Wrapper";
+    }
+
+    @TargetApi(24)
+    private Modifier[] getTargetClassModifiers(TypeElement originalClass) {
+        List<Modifier> modifiers = originalClass.getModifiers()
+                .stream()
+                .filter(modifier -> modifier != Modifier.PRIVATE)
+                .filter(modifier -> modifier != Modifier.STATIC)
+                .collect(Collectors.toList());
+        modifiers.addAll(Collections.singletonList(Modifier.FINAL));
+
+        return modifiers.toArray(new Modifier[modifiers.size()]);
     }
 
     private FieldSpec getSingletonField(ClassName className) {
@@ -164,9 +177,16 @@ public class ShoebillProcessor extends AbstractProcessor {
 
     @TargetApi(24)
     private MethodSpec getProxyMethod(TypeElement originalClass, ExecutableElement method) {
+        List<Modifier> modifiers = method.getModifiers()
+                .stream()
+                .filter(modifier -> modifier != Modifier.PRIVATE)
+                .filter(modifier -> modifier != Modifier.STATIC)
+                .collect(Collectors.toList());
+        modifiers.addAll(Collections.singletonList(Modifier.FINAL));
+
         MethodSpec.Builder builder = MethodSpec
                 .methodBuilder(method.getSimpleName().toString())
-                .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
+                .addModifiers(modifiers.toArray(new Modifier[modifiers.size()]))
                 .returns(TypeName.get(method.getReturnType()));
 
         List<ParameterSpec> parameterSpecs = method.getParameters()
