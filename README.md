@@ -74,18 +74,9 @@ public void mockStatic() throws Exception {
 }
 ```
 
-This setter method is properly annoted with `@VisibleForTesting(otherwise = VisibleForTesting.NONE)` that your lint tool warns you if you try to use this method in production code as of Android Studio 2.3 or later.
+This setter method is properly annotated with `@VisibleForTesting(otherwise = VisibleForTesting.NONE)` that your lint tool warns you if you try to use this method in production code as of Android Studio 2.3 or later.
 
 ## Installation
-
-```
-repositories {
-    jcenter()
-    maven {
-        url "http://dl.bintray.com/srym/maven"
-    }
-}
-```
 
 ```
 annotationProcessor 'us.shiroyama.android:shoebill-processor:0.1.1'
