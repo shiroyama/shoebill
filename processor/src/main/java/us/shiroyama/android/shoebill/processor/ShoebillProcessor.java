@@ -15,7 +15,6 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -134,7 +133,6 @@ public class ShoebillProcessor extends AbstractProcessor {
                 .filter(modifier -> modifier != Modifier.PRIVATE)
                 .filter(modifier -> modifier != Modifier.STATIC)
                 .collect(Collectors.toList());
-        modifiers.addAll(Collections.singletonList(Modifier.FINAL));
 
         return modifiers.toArray(new Modifier[modifiers.size()]);
     }
@@ -182,7 +180,6 @@ public class ShoebillProcessor extends AbstractProcessor {
                 .filter(modifier -> modifier != Modifier.PRIVATE)
                 .filter(modifier -> modifier != Modifier.STATIC)
                 .collect(Collectors.toList());
-        modifiers.addAll(Collections.singletonList(Modifier.FINAL));
 
         MethodSpec.Builder builder = MethodSpec
                 .methodBuilder(method.getSimpleName().toString())
