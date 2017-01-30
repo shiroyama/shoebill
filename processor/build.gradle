@@ -16,7 +16,7 @@ publish {
     userOrg = 'srym'
     groupId = 'us.shiroyama.android'
     artifactId = 'shoebill-processor'
-    version = '0.1.0'
+    version = '0.1.1'
     description = "Shoebill is a library to wrap static methods for unit testing."
     website = 'https://github.com/srym/shoebill'
     licences = ['Apache-2.0']
