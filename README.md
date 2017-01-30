@@ -76,6 +76,8 @@ public void mockStatic() throws Exception {
 
 This setter method is properly annotated with `@VisibleForTesting(otherwise = VisibleForTesting.NONE)` that your lint tool warns you if you try to use this method in production code as of Android Studio 2.3 or later.
 
+![VisibleForTesting](https://raw.githubusercontent.com/srym/shoebill/master/images/visible_for_testing.png)
+
 ## Installation
 
 ```
